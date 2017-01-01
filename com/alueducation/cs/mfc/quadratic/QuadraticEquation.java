@@ -32,7 +32,8 @@ public class QuadraticEquation {
     /**
      * Solve the quadratic equation.
      *
-     * @return  the roots of the quadratic equation
+     * @return Optional object that will be empty if there are no real roots,
+     *         or contains a Roots object that contains the real roots.
      */
     public Optional<Roots> solve(){
 
