@@ -1,5 +1,10 @@
 package com.alueducation.cs.mfc.quadratic;
 
+import java.text.NumberFormat;
+import java.text.DecimalFormat;
+import java.util.Locale;
+
+
 /**
  * Representation of the roots of a quadratic equation.
  */
@@ -17,7 +22,7 @@ public class Roots {
      *
      * @param   q the root value.
      */
-    public Roots(double q){
+    public Roots(double q) {
         this.q = q;
         this.s = q;
     }
@@ -48,8 +53,8 @@ public class Roots {
         // obj is equal to this object if both objects contain the same values
         // regardless of variable assigned to.
         Roots r = (Roots) obj;
-        return (this.q == r.q && this.s == r.s) || 
-            (this.q == r.s && this.s == r.q);
+        return (this.q == r.q && this.s == r.s) 
+            || (this.q == r.s && this.s == r.q);
     }
 
     /**
@@ -62,6 +67,13 @@ public class Roots {
      */
     @Override
     public String toString() {
-        return q == s ? "x = " + q : "(" + q + ", " + s + ")";
+        // get the NumberFormat for the default locale.
+        NumberFormat f = NumberFormat.getInstance(Locale.getDefault());
+        if (f instanceof DecimalFormat) {
+            // do not always show the decimal separator (e.g. 2.0 -> 2).
+            ((DecimalFormat) f).setDecimalSeparatorAlwaysShown(false);
+        }
+        return q == s ? "x = " + f.format(q) : "(" + f.format(q) + ", " 
+            + f.format(s) + ")";
     }
 }
